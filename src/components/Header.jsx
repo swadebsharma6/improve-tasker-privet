@@ -1,6 +1,12 @@
+import { useContext } from 'react';
+import { TaskManagementTask } from '../Context/TaskContext';
 import logo from '../assets/lws-logo-en.svg';
 
 const Header = () => {
+
+    const {user} = useContext(TaskManagementTask);
+    // console.log(user)
+
     return (
         <div>
         <nav className="py-6 md:py-8 fixed top-0 w-full !bg-[#191D26] z-50">
@@ -14,7 +20,9 @@ const Header = () => {
 			</a>
 		
 		</div>
+        <p className='text-white text-4xl'>{user}</p>
 	</nav>
+  
         </div>
     );
 };

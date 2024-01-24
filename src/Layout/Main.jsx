@@ -7,10 +7,11 @@ import TaskContainer from "../components/TaskContainer";
 const Main = () => {
     return (
         <div className="container mx-auto">
-           <Header></Header>
-           <HeroSection></HeroSection>
-           <TaskContainer></TaskContainer>
-           <Footer></Footer>
+        
+          <Header></Header>
+          <HeroSection></HeroSection>
+          <TaskContainer></TaskContainer>
+          <Footer></Footer>
         </div>
     );
 };
