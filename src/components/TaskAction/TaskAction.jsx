@@ -1,6 +1,15 @@
+import { useContext } from "react";
+import { TaskManagementTask } from "../../Context/TaskContext";
 
 const TaskAction = ({handleAddTask}) => {
 
+    const{tasks, setTasks} = useContext(TaskManagementTask)
+
+    const handleDeleteAllClick =()=>{
+        tasks.length = 0;
+        setTasks([...tasks]);
+        alert('Delete all Task successfully')
+    }
     
 
 
@@ -26,7 +35,9 @@ const TaskAction = ({handleAddTask}) => {
         <button
         onClick={handleAddTask}
         className="rounded-md bg-blue-500 px-3.5 py-2.5 text-sm font-semibold">Add Task</button>
-        <button className="rounded-md bg-red-500 px-3.5 py-2.5 text-sm font-semibold">Delete All</button>
+        <button
+        onClick={handleDeleteAllClick}
+        className="rounded-md bg-red-500 px-3.5 py-2.5 text-sm font-semibold">Delete All</button>
     </div>
     );
 };

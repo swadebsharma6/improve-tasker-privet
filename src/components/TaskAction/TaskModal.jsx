@@ -1,17 +1,26 @@
+import { useContext } from "react";
+import { TaskManagementTask } from "../../Context/TaskContext";
 
 
-const TaskModal = () => {
+const TaskModal = ({setShowSetModal, showAddModal}) => {
+  const {tasks, setTasks} = useContext(TaskManagementTask);
+
 
     const handleCreateTask =(e)=>{
         e.preventDefault();
        const form = e.target;
        const title = form.title.value;
        const description = form.description.value;
-       const tags = form.tags.value;
+       const tagsContent = form.tags.value;
+       const tags = tagsContent.split(',');
        const priority = form.priority.value;
 
+      //  Create Task Object
+
        const task = {id: crypto.randomUUID(), title, description, tags, priority};
-       console.log(task)
+       setTasks([...tasks, task])
+       form.reset();
+       setShowSetModal(!showAddModal)
 
     }
 

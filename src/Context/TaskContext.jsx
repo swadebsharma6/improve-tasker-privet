@@ -1,13 +1,24 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 export const TaskManagementTask = createContext(null)
 
 const TaskContext = ({children}) => {
 
-    const user ='Swadeb Sharma';
+    const defaultTask ={
+        'id': crypto.randomUUID(),
+        'title': "Learn React",
+        'description': 'Connect an existing API to a third-party database using secure methods and handle data exchange efficiently.',
+        'tags': ['web', 'react', 'Js'],
+        'priority': 'High',
+        'isFavorite': true
+
+    }
+
+    const [tasks, setTasks] = useState([defaultTask]);
 
     const taskInfo ={
-        user,
+        tasks,
+        setTasks,
     }
 
     return (
