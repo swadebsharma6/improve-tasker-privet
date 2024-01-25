@@ -13,12 +13,25 @@ const TaskContext = ({children}) => {
         'isFavorite': true
 
     }
-
+    const [showAddModal, setShowSetModal] = useState(false);
     const [tasks, setTasks] = useState([defaultTask]);
+    const [editTask, setEditTask] = useState('');
+
+
+    const handleEditTask =(task) =>{
+        console.log('edit btn is clicked', task);
+        setEditTask(task)
+        setShowSetModal(!showAddModal);
+      }
 
     const taskInfo ={
+        editTask,
+        setEditTask,
         tasks,
         setTasks,
+        handleEditTask,
+        showAddModal,
+        setShowSetModal,
     }
 
     return (

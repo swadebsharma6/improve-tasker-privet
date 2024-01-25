@@ -1,13 +1,13 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { TaskManagementTask } from "../Context/TaskContext";
 import TaskAction from "./TaskAction/TaskAction";
 import TaskModal from "./TaskAction/TaskModal";
 
 const TaskContainer = () => {
-  const [showAddModal, setShowSetModal] = useState(false);
 
-  const {tasks} = useContext(TaskManagementTask);
-  // console.log(tasks)
+
+  const {tasks, setTasks,  handleEditTask, showAddModal, setShowSetModal} = useContext(TaskManagementTask);
+
 
   const handleAddTask = () => {
     setShowSetModal(!showAddModal);
@@ -21,6 +21,15 @@ const TaskContainer = () => {
     }
     return color;
   };
+
+
+  const handleDeleteTask =(taskId)=>{
+    const remainTasks = tasks.filter(task => task.id !== taskId);
+    setTasks(remainTasks)
+  }
+
+
+ 
 
   return (
     <section className="mb-20">
@@ -103,8 +112,12 @@ const TaskContainer = () => {
                 <td className="text-center capitalize">{task.priority}</td>
                 <td>
                   <div className="flex items-center justify-center space-x-3">
-                    <button className="text-red-500">Delete</button>
-                    <button className="text-blue-500">Edit</button>
+                    <button
+                    onClick={()=>handleDeleteTask(task.id)}
+                    className="text-red-500">Delete</button>
+                    <button
+                    onClick={()=>handleEditTask(task)}
+                    className="text-blue-500">Edit</button>
                   </div>
                 </td>
               </tr>

@@ -3,7 +3,7 @@ import { TaskManagementTask } from "../../Context/TaskContext";
 
 const TaskAction = ({handleAddTask}) => {
 
-    const{tasks, setTasks} = useContext(TaskManagementTask)
+    const{ tasks, setTasks} = useContext(TaskManagementTask)
 
     const handleDeleteAllClick =()=>{
         tasks.length = 0;

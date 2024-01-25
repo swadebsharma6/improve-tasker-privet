@@ -3,7 +3,10 @@ import { TaskManagementTask } from "../../Context/TaskContext";
 
 
 const TaskModal = ({setShowSetModal, showAddModal}) => {
-  const {tasks, setTasks} = useContext(TaskManagementTask);
+  const { tasks, setTasks} = useContext(TaskManagementTask);
+
+
+
 
 
     const handleCreateTask =(e)=>{
@@ -16,7 +19,6 @@ const TaskModal = ({setShowSetModal, showAddModal}) => {
        const priority = form.priority.value;
 
       //  Create Task Object
-
        const task = {id: crypto.randomUUID(), title, description, tags, priority};
        setTasks([...tasks, task])
        form.reset();
