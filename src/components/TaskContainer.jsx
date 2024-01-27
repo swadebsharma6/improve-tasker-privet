@@ -6,7 +6,7 @@ import TaskModal from "./TaskAction/TaskModal";
 const TaskContainer = () => {
 
 
-  const {tasks, setTasks,  handleEditTask, showAddModal, setShowSetModal} = useContext(TaskManagementTask);
+  const {tasks, setTasks,   showAddModal, setShowSetModal} = useContext(TaskManagementTask);
 
 
   const handleAddTask = () => {
@@ -116,7 +116,6 @@ const TaskContainer = () => {
                     onClick={()=>handleDeleteTask(task.id)}
                     className="text-red-500">Delete</button>
                     <button
-                    onClick={()=>handleEditTask(task)}
                     className="text-blue-500">Edit</button>
                   </div>
                 </td>

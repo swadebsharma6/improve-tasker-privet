@@ -10,15 +10,25 @@ const TaskAction = ({handleAddTask}) => {
         setTasks([...tasks]);
         alert('Delete all Task successfully')
     }
+
+
+    const handleSearch = event =>{
+        event.preventDefault();
+        const searchText = event.target.search.value;
+        
+        const result = tasks.filter(item => item.title.toLowerCase() === searchText.toLowerCase());
+       setTasks(result)
+
+    }
     
 
 
     return (
         <div className="flex items-center space-x-5">
-        <form>
+        <form onSubmit={handleSearch}>
             <div className="flex">
                 <div className="relative overflow-hidden rounded-lg text-gray-50 md:min-w-[380px] lg:min-w-[440px]">
-                    <input type="search" id="search-dropdown"
+                    <input type="search" name="search"
                         className="z-20 block w-full bg-gray-800 px-4 py-2 pr-10 focus:outline-none" placeholder="Search Task"
                         required />
                     <button type="submit" className="absolute right-2 top-0 h-full rounded-e-lg text-white md:right-4">
