@@ -2,41 +2,36 @@ import { useContext } from "react";
 import { TaskManagementTask } from "../../Context/TaskContext";
 
 
-const TaskModal = ({setShowSetModal, showAddModal}) => {
-  const { tasks, setTasks} = useContext(TaskManagementTask);
+const TaskEditModal = ({ editTask }) => {
 
+    const { showEditModal, setShowEditModal} = useContext(TaskManagementTask);
 
+    const handleUpdateTask = event =>{
+        event.preventDefault();
+        const form = event.target;
+        const title = form.title.value;
+        const description = form.description.value;
+        const tags = form.tags.value;
+        const priority = form.priority.value;
+        const updateTask = {title, description, tags, priority};
+        console.log(updateTask)
+       
+      
+       
 
-
-
-    const handleCreateTask =(e)=>{
-        e.preventDefault();
-       const form = e.target;
-       const title = form.title.value;
-       const description = form.description.value;
-       const tagsContent = form.tags.value;
-       const tags = tagsContent.split(',');
-       const priority = form.priority.value;
-
-      //  Create Task Object
-       const task = {id: crypto.randomUUID(), title, description, tags, priority};
-       setTasks([...tasks, task])
-       form.reset();
-       setShowSetModal(!showAddModal)
-
+        setShowEditModal(!showEditModal)
     }
-
 
     return (
         <div className=" h-full w-full z-50 absolute left-0 top-20 p-10">
         <form
-        onSubmit={handleCreateTask}
+       onSubmit={handleUpdateTask}
         className="mx-auto my-10 w-full max-w-[740px]  rounded-xl border border-[#FEFBFB]/[36%] bg-[#191D26] p-10 max-md:px-4 lg:my-20 lg:p-11 "
       >
         <h2
           className="mb-9 text-center text-2xl font-bold text-white lg:mb-11 lg:text-[28px]"
         >
-          Add New Task
+          Edit Task
         </h2>
   
 
@@ -48,6 +43,7 @@ const TaskModal = ({setShowSetModal, showAddModal}) => {
               className="block w-full rounded-md bg-[#2D323F] px-3 py-2.5"
               type="text"
               name="title"
+              defaultValue={editTask.title}
               id="title"
               required
             />
@@ -59,6 +55,7 @@ const TaskModal = ({setShowSetModal, showAddModal}) => {
               className="block min-h-[120px] w-full rounded-md bg-[#2D323F] px-3 py-2.5 lg:min-h-[180px]"
               type="text"
               name="description"
+              defaultValue={editTask.description}
               id="description"
               required
             ></textarea>
@@ -74,6 +71,7 @@ const TaskModal = ({setShowSetModal, showAddModal}) => {
                 className="block w-full rounded-md bg-[#2D323F] px-3 py-2.5"
                 type="text"
                 name="tags"
+                defaultValue={editTask.tags}
                 id="tags"
                 required
               />
@@ -84,7 +82,7 @@ const TaskModal = ({setShowSetModal, showAddModal}) => {
               <select
                 className="block w-full cursor-pointer rounded-md bg-[#2D323F] px-3 py-2.5"
                 name="priority"
-                id="priority"
+                defaultValue={editTask.priority}
                 required
               >
                 <option value="">Select Priority</option>
@@ -101,7 +99,7 @@ const TaskModal = ({setShowSetModal, showAddModal}) => {
             type="submit"
             className="rounded bg-blue-600 px-4 py-2 text-white transition-all hover:opacity-80"
           >
-            Create new Task
+            Edit Task
           </button>
         </div>
        </form> 
@@ -109,4 +107,4 @@ const TaskModal = ({setShowSetModal, showAddModal}) => {
     );
 };
 
-export default TaskModal;
+export default TaskEditModal;

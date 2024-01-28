@@ -14,21 +14,22 @@ const TaskContext = ({children}) => {
 
     }
     const [showAddModal, setShowSetModal] = useState(false);
+    const [showEditModal, setShowEditModal] = useState(false);
     const [tasks, setTasks] = useState([defaultTask]);
 
-
-
-    // const handleEditTask =(task) =>{
-    //     setShowSetModal(!showAddModal)
-    //     // setEditTask(task);
-    //     console.log(task)
-    //   }
+    const handleDeleteAllClick =()=>{
+        tasks.length = 0;
+        setTasks([...tasks]);
+        alert('Delete all Task successfully')
+    }
 
     const taskInfo ={
         tasks,
         setTasks,
         showAddModal,
         setShowSetModal,
+        showEditModal, setShowEditModal,
+        handleDeleteAllClick
     }
 
     return (

@@ -1,18 +1,19 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { TaskManagementTask } from "../Context/TaskContext";
 import TaskAction from "./TaskAction/TaskAction";
+import TaskEditModal from "./TaskAction/TaskEditModal";
 import TaskModal from "./TaskAction/TaskModal";
 
 const TaskContainer = () => {
 
 
-  const {tasks, setTasks,   showAddModal, setShowSetModal} = useContext(TaskManagementTask);
+  const {tasks, setTasks, showAddModal, setShowSetModal, showEditModal, setShowEditModal} = useContext(TaskManagementTask);
+  const [editTask, setEditTask] = useState(null);
 
 
   const handleAddTask = () => {
     setShowSetModal(!showAddModal);
   };
-
   const getRandomColor = () => {
     const letters = '0123456789ABCDEF';
     let color = '#';
@@ -27,16 +28,36 @@ const TaskContainer = () => {
     const remainTasks = tasks.filter(task => task.id !== taskId);
     setTasks(remainTasks)
   }
+  
+
+  const handleEditTask =(task)=>{
+    setShowEditModal(!showEditModal);
+    setEditTask(task);
+}
+
+
 
 
  
 
   return (
     <section className="mb-20">
-      <div className="">{showAddModal && <TaskModal
+      <div>
+      {
+        showAddModal && <TaskModal
         showAddModal={showAddModal}
+        // taskToUpdate={taskToUpdate}
         setShowSetModal={setShowSetModal}
-        ></TaskModal>}</div>
+        ></TaskModal>
+      }
+      {
+        showEditModal && <TaskEditModal 
+        handleEditTask={handleEditTask}
+        editTask={editTask}
+        setEditTask={setEditTask}
+        ></TaskEditModal>
+      }
+        </div>
       <div className="container">
         <div className="rounded-xl border border-[rgba(206,206,206,0.12)] bg-[#1D212B] px-6 py-8 md:px-9 md:py-16">
           <div className="mb-14 items-center justify-between sm:flex">
@@ -116,6 +137,7 @@ const TaskContainer = () => {
                     onClick={()=>handleDeleteTask(task.id)}
                     className="text-red-500">Delete</button>
                     <button
+                    onClick={()=>handleEditTask(task)}
                     className="text-blue-500">Edit</button>
                   </div>
                 </td>
