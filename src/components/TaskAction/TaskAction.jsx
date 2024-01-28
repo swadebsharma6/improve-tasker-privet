@@ -18,7 +18,7 @@ const TaskAction = ({handleAddTask,}) => {
         event.preventDefault();
         const searchText = event.target.search.value;
         
-        const result = tasks.filter(item => item.title.toLowerCase() === searchText.toLowerCase());
+        const result = tasks.filter((item )=> item.title.toLowerCase() === searchText.toLowerCase());
        setTasks(result)
 
     }

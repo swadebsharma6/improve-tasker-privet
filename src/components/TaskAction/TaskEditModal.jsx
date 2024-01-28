@@ -2,23 +2,24 @@ import { useContext } from "react";
 import { TaskManagementTask } from "../../Context/TaskContext";
 
 
-const TaskEditModal = ({ editTask }) => {
+const TaskEditModal = ({ editTask,setEditTask }) => {
 
     const { showEditModal, setShowEditModal} = useContext(TaskManagementTask);
 
+
     const handleUpdateTask = event =>{
         event.preventDefault();
-        const form = event.target;
-        const title = form.title.value;
-        const description = form.description.value;
-        const tags = form.tags.value;
-        const priority = form.priority.value;
-        const updateTask = {title, description, tags, priority};
-        console.log(updateTask)
-       
       
-       
+       const form = event.target;
+       const title = form.title.value;
+       const description = form.description.value;
+       const tagsContent = form.tags.value;
+       const tags = tagsContent.split(',');
+       const priority = form.priority.value;
 
+      //  Create Task Object
+        const updateTask = {title, description, tags, priority};
+        setEditTask(updateTask)
         setShowEditModal(!showEditModal)
     }
 

@@ -9,8 +9,9 @@ const TaskContainer = () => {
 
   const {tasks, setTasks, showAddModal, setShowSetModal, showEditModal, setShowEditModal} = useContext(TaskManagementTask);
   const [editTask, setEditTask] = useState(null);
+  // console.log('edit task', editTask)
 
-
+  
   const handleAddTask = () => {
     setShowSetModal(!showAddModal);
   };
@@ -23,23 +24,15 @@ const TaskContainer = () => {
     return color;
   };
 
-
   const handleDeleteTask =(taskId)=>{
     const remainTasks = tasks.filter(task => task.id !== taskId);
     setTasks(remainTasks)
   }
   
-
   const handleEditTask =(task)=>{
     setShowEditModal(!showEditModal);
     setEditTask(task);
 }
-
-
-
-
- 
-
   return (
     <section className="mb-20">
       <div>
